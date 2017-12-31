@@ -58,7 +58,6 @@ func (engine *ORMEngine) Insert(o interface{}) error {
 	if err != nil {
 		return err
 	}
-	engine.db.Close()
 	return nil
 }
 
