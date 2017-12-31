@@ -48,5 +48,7 @@ func main() {
 	fmt.Println(pEveryOne)
 }
 ```
+go run main.go
 ![cmd](https://i.loli.net/2017/12/31/5a48840716be4.png)
+mysql
 ![sql](https://i.loli.net/2017/12/31/5a48844417e83.png)
