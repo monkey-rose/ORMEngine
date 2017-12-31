@@ -29,8 +29,9 @@ type ORMEngine struct {
 ### 测试样例
 ```
 func main() {
+	engine := entities.NewORMEngine()
+	
 	usr := entities.NewUser("ricky", "cs")
-	engine := NewORMEngine()
 	_ = engine.Insert(usr)
 
 	usr2 := entities.NewUser("mini", "law")
@@ -40,7 +41,6 @@ func main() {
 	_ = engine.Insert(usr3)
 
 	pEveryOne := make([]entities.UserInfo, 0)
-	engine := entities.NewORMEngine()
 	_ = engine.Find(&pEveryOne)
 	fmt.Println(pEveryOne)
 }
