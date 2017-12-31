@@ -83,20 +83,24 @@ func (engine *ORMEngine) Find(o interface{}) error {
 
         rows.Scan(valuePtrs...)
         item := reflect.New(typeUser).Elem()
-
         for i, col := range columns {
-        	//fmt.Println(reflect.ValueOf(typeUser).Kind())
             val := values[i]
-            //fmt.Println(reflect.TypeOf(val))
 			if col == "createat" {
 				b, _ := val.([]byte)
                 v := string(b)
-				tm2, _ := time.Parse("2006-01-02 15:04:05", v)
+				tm2, err := time.Parse("2006-01-02 15:04:05", v)
+				checkErr(err)
+				if err != nil {
+					return err
+				}
 				item.Field(i).Set(reflect.ValueOf(&tm2))
 			} else if col == "uid" {
 				b, _ := val.([]byte)
                 v := string(b)
-				id , _:= strconv.Atoi(v)
+				id , err:= strconv.Atoi(v)
+				if err != nil {
+					return err
+				}
 				id_64 := int64(id)
 				item.Field(i).SetInt(id_64)
 			} else {
